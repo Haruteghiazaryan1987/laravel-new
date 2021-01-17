@@ -96,12 +96,13 @@ class PostController extends BaseController
 
         $data=$request->all();
 
-        if (empty($data)) {
-            $data['slug']=Str::slug($data['title']);
-        }
-        if (empty($item->published_at) && $data['is_published']) {
-            $data['published_at']=Carbon::now()->format('Y-m-d H:i:s'); //Carbon::createFromFormat('Y-m-d H:i:s','');//Carbon::now();
-        }
+        //TODO phoxancela logikan observer
+        // if (empty($data)) {
+        //     $data['slug']=Str::slug($data['title']);
+        // }
+        // if (empty($item->published_at) && $data['is_published']) {
+        //     $data['published_at']=Carbon::now()/* ->format('Y-m-d H:i:s') */;
+        // }
 
         $result=$item->update($data);
 
