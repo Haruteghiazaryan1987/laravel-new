@@ -57,7 +57,7 @@
 
                         <div class="form-group">
                             <label for="slug">Индентификатор</label>
-                            <input type="text" name="slug" id="slug" class="form-control" value="0">
+                            <input type="text" name="slug" id="slug" class="form-control" value="{{ $item->slug }}">
                         </div>
                         <div class="form-group">
                             <label for="excerpt">Статья</label>
@@ -65,11 +65,11 @@
                                 rows="3">{{ old('excerpt', $item->excerpt) }}</textarea>
                         </div>
                         <div class="form-check">
-                            <input type="hidden" name="is_published" id="slug" class="form-control"
-                                value="{{ $item->slug }}">
-                            <input type="checkbox" name="is_published" id="slug" class="form-check-input"
-                                value="{{ $item->is_published }}" @if ($item->is_published)
-                            check="checked"
+                            <input type="hidden" name="is_published" value="0">
+                            <input type="checkbox" name="is_published" class="form-check-input"
+                                value="1"
+                            @if ($item->is_published)
+                            checked="checked"
                             @endif>
                             <label class="form-check-label" for="is_published">Опубликовано</label>
                         </div>
