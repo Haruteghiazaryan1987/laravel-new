@@ -75,6 +75,10 @@ class BlogPostObserver
         $blogPost->user_id = auth()->id ?? BlogPost::UNKNOWN_USER;  //TODO  n = a ?? b  ete (a!=null) apa n=a, kam (a=null) n=b
     }
 
+    public function deleting(BlogPost $blogPost)
+    {
+        // dd(__METHOD__,$blogPost);
+    }
     /**
      * Handle the blog post "deleted" event.
      *
