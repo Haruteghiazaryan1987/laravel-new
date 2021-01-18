@@ -9,6 +9,8 @@ class BlogPost extends Model
 {
     use SoftDeletes;
 
+    const UNKNOWN_USER=1;
+
     protected $fillable=[
         'title',
         'slug',
@@ -17,7 +19,7 @@ class BlogPost extends Model
         'content_raw',
         'is_published',
         'published_at',
-        'user_id',
+        // 'user_id',
     ];
 
     /**

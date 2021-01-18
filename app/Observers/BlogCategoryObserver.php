@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\BlogCategory;
 
+
 class BlogCategoryObserver
 {
     public function creating(BlogCategory $blogCategory)

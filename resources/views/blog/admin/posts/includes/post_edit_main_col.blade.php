@@ -36,7 +36,7 @@
                         <div class="form-group">
                             <label for="content_raw">Статья</label>
                             <textarea name="content_raw" id="content_raw" class="form-control"
-                                rows="20">{{ old('content_raw', $item->content_raw) }}</textarea>
+                                rows="10">{{ old('content_raw', $item->content_raw) }}</textarea>
                         </div>
                     </div>
                     <div class="tab-pane" id="adddata" role="tabpanel">
@@ -60,7 +60,7 @@
                             <input type="text" name="slug" id="slug" class="form-control" value="{{ $item->slug }}">
                         </div>
                         <div class="form-group">
-                            <label for="excerpt">Статья</label>
+                            <label for="excerpt">Видержка</label>
                             <textarea name="excerpt" id="excerpt" class="form-control"
                                 rows="3">{{ old('excerpt', $item->excerpt) }}</textarea>
                         </div>

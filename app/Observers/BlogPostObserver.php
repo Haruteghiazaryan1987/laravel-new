@@ -4,10 +4,17 @@ namespace App\Observers;
 
 use App\Models\BlogPost;
 use Carbon\Carbon;
-use Str\Str;
+use Illuminate\Support\Str;
 
 class BlogPostObserver
 {
+    public function creating(BlogPost $blogPost)
+    {
+        $this->setPublishedAt($blogPost);
+        $this->setSlug($blogPost);
+        $this->setHtml($blogPost);
+        $this->setUser($blogPost);
+    }
     /**
      * Handle the blog post "created" event.
      *
@@ -49,7 +56,7 @@ class BlogPostObserver
     }
 
     protected function setPublishedAt(BlogPost $blogPost) {
-        if (empty($blogPost->published_at)) {
+        if (empty($blogPost->published_at) && $blogPost->is_published) {
             $blogPost->published_at=Carbon::now();
         }
     }
@@ -57,6 +64,15 @@ class BlogPostObserver
         if (empty($blogPost->slug)) {
             $blogPost->slug=Str::slug($blogPost->title);
         }
+    }
+    protected function setHtml(BlogPost $blogPost) {
+        if ($blogPost->isDirty('content_raw')) {
+            //TODO petqa lini generacia markdown
+            $blogPost->content_html=$blogPost->content_raw;
+        }
+    }
+    protected function setUser(BlogPost $blogPost) {
+        $blogPost->user_id = auth()->id ?? BlogPost::UNKNOWN_USER;  //TODO  n = a ?? b  ete (a!=null) apa n=a, kam (a=null) n=b
     }
 
     /**
