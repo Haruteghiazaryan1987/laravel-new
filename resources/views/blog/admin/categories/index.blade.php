@@ -28,8 +28,13 @@
                                         <td @if (in_array($item->parent_id, [0, 1]))
                                             style="color:#ccc"
                                 @endif>
-                                {{ $item->parent_id }}{{-- $item->parentCategory->title
-                                --}}
+                                {{-- {{ $item->parentCategory->title ?? '?' }} --}}
+                                {{-- {{ optional($item->parentCategory)->title }} --}}
+                                {{-- {{ $item->parentCategory->title ?? ($item->id === \App\Models\BlogCategory::ROOT ? 'Корень' : '???') }} --}}
+                                {{-- TODO accessors BlogCategory-ayum getParentTitleAttribute() --}}
+                                {{-- {{ $item->parent_title }} --}}
+                                {{-- kam --}}
+                                {{ $item->parentTitle }}
                                 </td>
                                 </tr>
                                 @endforeach

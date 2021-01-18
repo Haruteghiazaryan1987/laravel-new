@@ -62,11 +62,14 @@ class BlogCategoryRepository extends CoreRepository
    * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
    */
   public function getAllWithPaginate($perPage=null) {
-    $column=['id','title','parent_id'];
+    $columns=['id','title','parent_id'];
 
     $result=$this
         ->startConditions()
-        ->select($column)
+        ->select($columns)
+        ->with([
+          'parentCategory:id,title'
+        ])
         ->paginate($perPage);
     
     return $result;
