@@ -10,6 +10,9 @@ use App\Repositories\BlogCategoryRepository;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use App\Models\BlogPost;
+use App\Jobs\BlogPostAfterCreateJob;
+use App\Jobs\BlogPostAfterDeleteJob;
+
 
 class PostController extends BaseController 
 {
@@ -66,6 +69,8 @@ class PostController extends BaseController
         $item = (new BlogPost())->create($data);
 
         if ($item) {
+            $job=new BlogPostAfterCreateJob($item);
+            $this->dispatch($job);
             return redirect()
             ->route('blog.admin.posts.edit',$item->id)
             ->with(['success'=>'успешно сохранено']);
@@ -141,6 +146,8 @@ class PostController extends BaseController
      */
     public function destroy($id)
     {
+        BlogPostAfterDeleteJob::dispatch($id)->delay(20);
+
         // dd(__METHOD__,$id,request()->all());
         $result = BlogPost::destroy($id);
 

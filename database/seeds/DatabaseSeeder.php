@@ -14,10 +14,10 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         // $this->call(BlogCategoriesTableSeeder::class);
-        $this->call([
-            UsersTableSeeder::class,
-            BlogCategoriesTableSeeder::class,
-        ]);
-        factory(BlogPost::class,100)->create();
+        // $this->call([
+        //     UsersTableSeeder::class,
+        //     BlogCategoriesTableSeeder::class,
+        // ]);
+        // factory(BlogPost::class,100)->create();
     }
 }
